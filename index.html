@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Molli Morris - Wikipedia Style Portfolio</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+      }
+      
+      .header {
+        background-color: #ffffff;
+        padding: 0.5em 1em;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1em;
+      }
+      
+      .logo-left {
+        display: flex;
+        align-items: center;
+      }
+      
+      .logo img {
+        height: 50px; /* Adjusted height for consistency */
+        margin-right: 0.5em;
+      }
+      
+      /* Updated styling for the Wikipedia-like title */
+      .logo-text {
+        display: flex;
+        flex-direction: column; /* Stack text vertically */
+        line-height: 1.2; /* Adjust line height for closer stacking */
+      }
+
+      .mollipedia-title {
+        font-family: 'Linux Libertine', 'Times New Roman', Times, serif; /* Wikipedia logo font */
+        font-size: 1.6em; /* Slightly larger for the main title */
+        font-weight: normal;
+        color: #000;
+      }
+
+      .mollipedia-tagline {
+        /* Wikipedia tagline/body font stack for better system font matching */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif; 
+        font-size: 0.7em; /* Smaller for the tagline */
+        color: #555; /* Slightly muted color for the tagline */
+        margin-top: -0.2em; /* Pull tagline up closer to the title */
+      }
+      
+      .search-section {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        flex: 1;
+        justify-content: center;
+        max-width: 500px;
+        margin: 0 2em;
+      }
+      
+      .search-bar {
+        display: flex;
+        align-items: center;
+        border: 1px solid #a2a9b1;
+        border-radius: 2px;
+        background: white;
+        flex: 1;
+        height: 32px;
+      }
+      
+      .search-input {
+        border: none;
+        outline: none;
+        padding: 6px 8px;
+        flex: 1;
+        font-size: 13px;
+        background: transparent;
+      }
+      
+      .search-button {
+        background: #f8f9fa;
+        border: none;
+        border-left: 1px solid #a2a9b1;
+        padding: 0 12px;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', sans-serif;
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+      }
+      
+      .search-button:hover {
+        background: #e8eaed;
+      }
+      
+      .header-links {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        font-size: 12px;
+      }
+      
+      .header-links a {
+        color: #0645ad;
+        text-decoration: none;
+      }
+      
+      .header-links a:hover {
+        text-decoration: underline;
+      }
+      
+      .menu-dots {
+        font-size: 16px;
+        color: #333;
+        cursor: pointer;
+        padding: 4px;
+        font-weight: bold;
+      }
+      
+      nav {
+        width: 250px;
+        background: #ffffff;
+        padding: 1em;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+      }
+
+      .content-wrapper {
+        display: flex;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      nav h2 {
+        border-bottom: 0.5px solid #a2a9b1;
+        padding-bottom: 0.1em;
+        font-weight: bold;
+        font-size: 0.9em;
+        font-family: 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', sans-serif;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      nav li {
+        margin: 0.5em 0;
+      }
+
+      nav a {
+        color: #0645ad;
+        text-decoration: none;
+        font-size: 0.95em;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        padding: 2em;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .infobox {
+        float: right;
+        width: 250px;
+        background: #f8f9fa;
+        border: 1px solid #a2a9b1;
+        padding: 1em;
+        margin-left: 1em;
+        margin-top: 4em;
+        font-size: 0.88em;
+      }
+
+      .infobox img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1em;
+      }
+
+      h1 {
+        font-family: 'Linux Libertine', Georgia, Times, serif;
+        font-weight: normal;
+        margin-top: 0;
+        font-size: 1.8em;
+        border-bottom: 1px solid #a2a9b1;
+        padding-bottom: 0.1em;
+        margin-bottom: 1em;
+      }
+
+      h2, h3 {
+        font-family: 'Linux Libertine', Georgia, Times, serif;
+        font-weight: normal;
+        font-size: 1.4em;
+        position: relative;
+        padding-bottom: 0.2em;
+        margin-top: 2em;
+      }
+      
+      /* Fixed border style for h2 elements */
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #a2a9b1;
+        max-width: 100%; /* Default to full width */
+      }
+      
+      /* Only constrain width for headings that might overlap with infobox */
+      #early-life h2::after,
+      #career h2::after { /* Added #career */
+        max-width: calc(100% - 275px);
+      }
+
+      h3 {
+        font-size: 1.1em;
+        border: none;
+        padding-bottom: 0;
+        margin-top: 1.5em;
+      }
+
+      section {
+        margin-bottom: 2em;
+        padding-left: 1em; /* Add padding for readability */
+        padding-right: 1em; /* Add padding for readability */
+      }
+
+      p, li {
+        font-size: 0.95em;
+        line-height: 1.6;
+      }
+
+      hr {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        border: none;
+        border-top: 1px solid #ccc;
+      }
+
+      /* Add this media query */
+      @media (max-width: 768px) {
+        .header {
+          padding: 0.3em 0.5em;
+        }
+        
+        .logo img {
+          height: 40px;
+        }
+        
+        .mollipedia-title {
+          font-size: 1.3em;
+        }
+
+        .mollipedia-tagline {
+          font-size: 0.6em;
+        }
+        
+        .content-wrapper {
+          flex-direction: column;
+        }
+        
+        nav {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+
+        main {
+          padding: 1em;
+        }
+
+        .infobox {
+          float: none;
+          width: 100%;
+          margin-left: 0;
+        }
+        
+        /* All h2 borders should be full width on mobile */
+        #early-life h2::after,
+        #career h2::after { /* Apply full width on mobile for both */
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <div class="logo-left">
+          <img src="https://i.imgur.com/gUED1qC.png" alt="Wiki-style logo" />
+          <div class="logo-text">
+            <span class="mollipedia-title">MollipediA</span>
+            <span class="mollipedia-tagline">The Free Encyclopedia</span>
+          </div>
+        </div>
+        
+        <div class="search-section">
+          <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search Mollipedia">
+            <button class="search-button">
+              Search
+            </button>
+          </div>
+        </div>
+        
+        <div class="header-links">
+          <a href="#">Donate</a>
+          <a href="#">Create account</a>
+          <a href="#">Log in</a>
+          <span class="menu-dots">⋯</span>
+        </div>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <nav>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#early-life">Early Life</a></li>
+          <li><a href="#career">Career</a></li>
+          <li><a href="#filmography">Filmography</a></li>
+          <li><a href="#fashion">Fashion</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#external-links">External Links</a></li>
+          <li><a href="#professional-availability">Professional Availability</a></li>
+        </ul>
+      </nav>
+
+    <main>
+      <div class="infobox">
+        <img src="https://i.imgur.com/gtEav2a.png" alt="Molli Morris portrait" />
+        <p><strong>Name:</strong> Molli Morris</p>
+        <p><strong>Born:</strong> March 17, 1999, Littleton, Colorado</p>
+        <p><strong>Nationality:</strong> American</p>
+        <p><strong>Alma Mater:</strong> Maine Media MFA, St. Lawrence University, Rhode Island School of Design</p>
+        <p><strong>Occupation:</strong> Director's Assistant, MFA Graduate Student</p>
+        <p><strong>Years active:</strong> 2021 - Present</p>
+        <p><strong>Contact:</strong> molliamorris@gmail.com</p>
+      </div>
+
+      <h1>Molli Morris</h1>
+
+      <section id="summary">
+        <p>
+          Molli Morris (b. March 17, 1999, Colorado, USA) is an American director's assistant and MFA candidate at Maine Media. After beginning her career in fashion, she transitioned into film, combining both disciplines in a distinctively rockstar style.
+        </p>
+        <p>
+          She lives in Los Angeles, California, and enjoys leathercrafting, wood carving, figure drawing, poetry, cooking, and beach lounging.
+        </p>
+      </section>
+      
+      <section id="early-life">
+        <h2>Early Life</h2>
+        <p><strong>1990s:</strong> Born in Centennial, Colorado to parents Jeff and Tina, Molli was raised with two brothers. Her family background includes farmers, cinder block entrepreneurs, and park rangers.</p>
+        <p><strong>2000s:</strong> Moved to Boston, took art classes, and entered fashion at 13. Noticed by the CFDA and inspired by Petra Collins, she dreamt of Marfa, Texas.</p>
+        <p><strong>2010s/2020s:</strong> In high school, Molli was student body president and art-focused. Attended St. Lawrence University, painting and working at Tory Burch. Also attended RISD summers.</p>
+      </section>
+
+      <section id="career">
+        <h2>Career</h2>
+        <p>Molli started at Tory Burch before COVID-19 led her to Marfa. She later moved to L.A., working with stylists like Nancy Steiner. She joined R&D Placement in 2022 and has supported Prettybird, Strike Anywhere, and Group Thrpy. In 2024, she became a Director's Assistant.</p>
+        <p>She also co-directs the documentary series <em>Life At Night</em> and practices leathercraft to reconnect with fashion. She's pursuing her MFA at Maine Media.</p>
+      </section>
+
+      <section id="filmography">
+        <h2>Filmography</h2>
+        <h3>Commercial</h3>
+        <ul>
+          <li>2024: Outback Steakhouse</li>
+          <li>2024: Busch Light</li>
+          <li>2024: Bombay Sapphire</li>
+          <li>2024: Nathan's Famous</li>
+          <li>2024: Little Debbie</li>
+          <li>2024: Coors Light</li>
+          <li>2024: Nissan (Stylist Assistant)</li>
+        </ul>
+        <h3>Film</h3>
+        <ul>
+          <li>2025: <em>Life at Night</em> (Director, Animator)</li>
+          <li>2024: <em>The Selectman</em> (Costume Designer)</li>
+          <li>2023: <em>In the Shadow of Palms</em> (Creative Assistant)</li>
+          <li>2023: <em>Ice Packs and Sunglasses</em> (Costume Designer)</li>
+        </ul>
+        <h3>TV</h3>
+        <ul>
+          <li>2023: <em>The Bachelor</em> (Stylist Assistant)</li>
+          <li>2023: <em>S.W.A.T.</em> (Background Actor, PA)</li>
+        </ul>
+        <h3>Music Videos</h3>
+        <ul>
+          <li>2023: Sony, <em>Set The Stage</em> (Production Assistant)</li>
+        </ul>
+      </section>
+
+      <section id="fashion">
+        <h2>Fashion</h2>
+        <ul>
+          <li>2023: Nancy Steiner - Personal Assistant</li>
+          <li>2023: Christian Stroble - Stylist Assistant</li>
+          <li>2020: Tory Burch, Gloria Baume - Stylist Assistant</li>
+        </ul>
+      </section>
+
+      <section id="process">
+        <h2>Process</h2>
+        <p>Molli works with 16mm film and collage animation techniques.</p>
+      </section>
+
+      <section id="external-links">
+        <h2>External Links</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/mollimorris/" target="_blank">Instagram</a></li>
+          <li><a href="https://vimeo.com/mollimorris" target="_blank">Vimeo</a></li>
+          <li><a href="https://www.linkedin.com/in/molli-morris/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </section>
+
+      <section id="professional-availability">
+        <h2>Professional Availability</h2>
+        <p>Molli is available for assistant directing, styling, and other creative collaborations. Contact her at <a href="mailto:molliamorris@gmail.com">molliamorris@gmail_dot_com</a>.</p>
+      </section>
+    </main>
+    </div>
+  </body>
+</html>
