@@ -56,7 +56,7 @@
 
       .mollipedia-tagline {
         /* Wikipedia tagline/body font stack for better system font matching */
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif; 
+        font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif; 
         font-size: 0.7em; /* Smaller for the tagline */
         color: #555; /* Slightly muted color for the tagline */
         margin-top: -0.2em; /* Pull tagline up closer to the title */
@@ -135,7 +135,7 @@
         font-weight: bold;
       }
       
-      nav {
+      nav { /* This is your "Contents" section */
         width: 250px;
         background: #ffffff;
         padding: 1em;
@@ -263,50 +263,92 @@
         border-top: 1px solid #ccc;
       }
 
-      /* Add this media query */
-      @media (max-width: 768px) {
+      /* --- MOBILE-SPECIFIC CSS STARTS HERE --- */
+      @media (max-width: 768px) { /* This breakpoint targets smaller screens like iPhones */
+        
+        /* General layout adjustments for mobile */
+        body {
+            /* Remove fixed flex-direction: column if it causes issues with content-wrapper */
+            /* The content-wrapper handles the main stacking */
+            padding-bottom: 20px; /* Add some padding at the bottom */
+        }
+
         .header {
-          padding: 0.3em 0.5em;
+          padding: 0.3em 0.5em; /* Smaller padding for header */
+          flex-direction: column; /* Stack header content vertically */
+          align-items: center; /* Center header content */
+        }
+        
+        .logo {
+            flex-direction: column; /* Stack logo left and search/links vertically */
+            padding: 0; /* Remove horizontal padding on smaller screens */
+            max-width: 100%; /* Ensure logo takes full width */
+            justify-content: center; /* Center elements within logo */
+        }
+
+        .logo-left {
+            margin-bottom: 10px; /* Space between logo and other elements */
+            width: 100%; /* Take full width */
+            justify-content: center; /* Center the logo image and text */
         }
         
         .logo img {
-          height: 40px;
+          height: 40px; /* Smaller logo for mobile */
         }
         
         .mollipedia-title {
-          font-size: 1.3em;
+          font-size: 1.3em; /* Smaller title font for mobile */
         }
 
         .mollipedia-tagline {
-          font-size: 0.6em;
+          font-size: 0.6em; /* Smaller tagline font for mobile */
+        }
+        
+        .search-section,
+        .header-links {
+          display: none; /* Hide search bar and header links on mobile */
+          /* You could implement a hamburger menu with JavaScript to reveal these */
         }
         
         .content-wrapper {
-          flex-direction: column;
+          flex-direction: column; /* Stack navigation and main content vertically */
+          width: 100%; /* Ensure wrapper takes full width */
+          margin: 0; /* Remove auto margins to allow full width */
         }
         
-        nav {
-          width: 100%;
-          height: auto;
-          position: relative;
+        nav { /* Your "Contents" section */
+          display: none; /* Completely hide the Contents navigation on mobile */
+          /* If you wanted to show it at the bottom, you'd remove display: none;
+             and style it with width: 100%; height: auto; etc. */
         }
 
         main {
-          padding: 1em;
+          padding: 1em; /* Adjust padding for main content on mobile */
+          max-width: 100%; /* Ensure main content takes full width */
+          margin: 0; /* Remove auto margins for full width */
         }
 
         .infobox {
-          float: none;
-          width: 100%;
-          margin-left: 0;
+          float: none; /* Remove float, so it stacks naturally */
+          width: 95%; /* Make it take nearly full width (adjust as needed) */
+          margin: 1em auto; /* Center infobox horizontally with auto margins and add vertical space */
+          box-sizing: border-box; /* Crucial: padding and border included in width */
+          font-size: 0.85em; /* Slightly smaller font for better fit */
+          margin-top: 1em; /* Reduce top margin for mobile */
         }
         
-        /* All h2 borders should be full width on mobile */
-        #early-life h2::after,
-        #career h2::after { /* Apply full width on mobile for both */
-          max-width: 100%;
+        /* All h2 borders should be full width on mobile as infobox is no longer floating */
+        h2::after {
+            max-width: 100% !important; /* Override any specific max-width from desktop */
+        }
+
+        /* Adjust padding for sections */
+        section {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
         }
       }
+      /* --- MOBILE-SPECIFIC CSS ENDS HERE --- */
     </style>
   </head>
   <body>
