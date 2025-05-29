@@ -6,6 +6,7 @@
     <title>Molli Morris - Wikipedia Style Portfolio</title>
 
     <link rel="icon" href="/MM---PEARL---FAVICON.png" type="image/png">
+    
     <style>
       body {
         font-family: 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', sans-serif;
@@ -213,7 +214,7 @@
         margin-bottom: 1em;
       }
 
-      h2, h3 {
+      h2 {
         font-family: 'Linux Libertine', Georgia, Times, serif;
         font-weight: normal;
         font-size: 1.4em;
@@ -221,8 +222,7 @@
         padding-bottom: 0.2em;
         margin-top: 2em;
       }
-      
-      /* Fixed border style for h2 elements */
+
       h2::after {
         content: "";
         position: absolute;
@@ -235,8 +235,7 @@
       }
       
       /* Only constrain width for headings that might overlap with infobox */
-      #early-life h2::after,
-      #career h2::after { /* Added #career */
+      #early-life h2::after { /* Removed #career from this rule */
         max-width: calc(100% - 275px);
       }
 
@@ -245,6 +244,7 @@
         border: none;
         padding-bottom: 0;
         margin-top: 1.5em;
+        font-weight: bold; /* --- ADDED THIS LINE --- */
       }
 
       section {
@@ -270,8 +270,6 @@
         
         /* General layout adjustments for mobile */
         body {
-            /* Remove fixed flex-direction: column if it causes issues with content-wrapper */
-            /* The content-wrapper handles the main stacking */
             padding-bottom: 20px; /* Add some padding at the bottom */
         }
 
@@ -320,25 +318,43 @@
         
         nav { /* Your "Contents" section */
           display: none; /* Completely hide the Contents navigation on mobile */
-          /* If you wanted to show it at the bottom, you'd remove display: none;
-             and style it with width: 100%; height: auto; etc. */
         }
 
         main {
           padding: 1em; /* Adjust padding for main content on mobile */
           max-width: 100%; /* Ensure main content takes full width */
           margin: 0; /* Remove auto margins for full width */
+          
+          /* --- FLEXBOX PROPERTIES FOR REORDERING ON MOBILE --- */
+          display: flex;           /* Make main a flex container */
+          flex-direction: column;  /* Stack its children vertically */
         }
 
-        .infobox {
-          float: none; /* Remove float, so it stacks naturally */
-          width: 95%; /* Make it take nearly full width (adjust as needed) */
-          margin: 1em auto; /* Center infobox horizontally with auto margins and add vertical space */
-          box-sizing: border-box; /* Crucial: padding and border included in width */
-          font-size: 0.85em; /* Slightly smaller font for better fit */
-          margin-top: 1em; /* Reduce top margin for mobile */
+        /* --- ORDERING FOR ELEMENTS WITHIN MAIN ON MOBILE --- */
+        main h1 { /* The main Molli Morris title */
+            order: 1; /* Appears first */
+        }
+
+        main section#summary {
+            order: 2; /* Appears second, after the main title */
+        }
+
+        .infobox { /* Your infobox */
+          float: none; 
+          width: 95%; 
+          margin: 1em auto; 
+          box-sizing: border-box; 
+          font-size: 0.85em; 
+          margin-top: 1em; 
+          order: 3; /* Appears third, after summary */
         }
         
+        /* --- THIS IS THE CRUCIAL ADDITION --- */
+        /* All other sections should appear after the infobox */
+        main section:not(#summary) {
+            order: 4; 
+        }
+
         /* All h2 borders should be full width on mobile as infobox is no longer floating */
         h2::after {
             max-width: 100% !important; /* Override any specific max-width from desktop */
@@ -391,6 +407,7 @@
           <li><a href="#filmography">Filmography</a></li>
           <li><a href="#fashion">Fashion</a></li>
           <li><a href="#process">Process</a></li>
+          <li><a href="#accomplishments">Accomplishments</a></li>
           <li><a href="#external-links">External Links</a></li>
           <li><a href="#professional-availability">Professional Availability</a></li>
         </ul>
@@ -400,10 +417,10 @@
       <div class="infobox">
         <img src="https://i.imgur.com/gtEav2a.png" alt="Molli Morris portrait" />
         <p><strong>Name:</strong> Molli Morris</p>
-        <p><strong>Born:</strong> March 17, 1999, Littleton, Colorado</p>
+        <p><strong>Born:</strong> March 17th, 1999 Littleton Colorado</p>
         <p><strong>Nationality:</strong> American</p>
-        <p><strong>Alma Mater:</strong> Maine Media MFA, St. Lawrence University, Rhode Island School of Design</p>
-        <p><strong>Occupation:</strong> Director's Assistant, MFA Graduate Student</p>
+        <p><strong>Alma mater:</strong> Maine Media, St. Lawrence University, Rhode Island School of Design</p>
+        <p><strong>Occupation:</strong> Director’s Assistant, MFA Graduate Student</p>
         <p><strong>Years active:</strong> 2021 - Present</p>
         <p><strong>Contact:</strong> molliamorris@gmail.com</p>
       </div>
@@ -412,53 +429,61 @@
 
       <section id="summary">
         <p>
-          Molli Morris (b. March 17, 1999, Colorado, USA) is an American director's assistant and MFA candidate at Maine Media. After beginning her career in fashion, she transitioned into film, combining both disciplines in a distinctively rockstar style.
+          <b>Molli Morris</b> (b. March 17, 1999, Colorado, USA) is known professionally as <i>Molli Morris</i>, an American director’s assistant, and receiving a Master of Fine Arts at Maine Media. After establishing a foundation in the fashion world, Morris catapulted into film, driven by her mission to fuse both disciplines at a distinctly rockstar level. 
         </p>
         <p>
-          She lives in Los Angeles, California, and enjoys leathercrafting, wood carving, figure drawing, poetry, cooking, and beach lounging.
+          She resides in Los Angeles, California, where she indulges in the simple pleasures of leathercrafting, the occasional flirtation with wood carving, figure drawing, writing poetry, cooking for her people, and being a beach slug.
+        </p>
+        <p>
+          As of 2025, Morris remains open to collaborative opportunities across the creative industries. [3]
         </p>
       </section>
       
       <section id="early-life">
         <h2>Early Life</h2>
-        <p><strong>1990s:</strong> Born in Centennial, Colorado to parents Jeff and Tina, Molli was raised with two brothers. Her family background includes farmers, cinder block entrepreneurs, and park rangers.</p>
-        <p><strong>2000s:</strong> Moved to Boston, took art classes, and entered fashion at 13. Noticed by the CFDA and inspired by Petra Collins, she dreamt of Marfa, Texas.</p>
-        <p><strong>2010s/2020s:</strong> In high school, Molli was student body president and art-focused. Attended St. Lawrence University, painting and working at Tory Burch. Also attended RISD summers.</p>
+        <h3>1990s</h3>
+        <p>Molli Morris was born a Pisces in Littleton, Colorado, on March 17, 1999. The middle child of parents Jeff and Tina, Molli has an older brother and a younger brother. Her parents, both raised in a small mountain town, met in their junior year of high school. Her mother hailed from a line of farmers, with a father who ran a cinder block company and a mother who owned a hair salon. Her father's lineage included a park ranger and a church-involved matriarch, making Molli's foray into creative pursuits all but certain.</p>
+        <h3>2000s</h3>
+        <p>While Molli was in elementary school, the family moved to Boston, Massachusetts. She began taking art classes at an elderly neighbor’s house. She received praise in a CFDA design competition, for which she was far too young to be eligible. She spent hours reading fashion blogs like Style Rookie, fascinated by the works of Petra Collins, and began a fixation with her dream to return West and live in Marfa, Texas.</p>
+        <h3>2010s/2020s</h3>
+        <p>In high school, Molli doubled down on her art while also serving as student body president. In a formative conversation in Quincy, Massachusetts, she reportedly declared, “It’s L.A. or nowhere,” solidifying her lifelong commitment to dramatic geography-based ultimatums. Her uniqueness and aim to cultivate one-of-a-kind experiences were evident in her pivotal decision to attend a liberal arts university. While attending a very cold liberal arts college in upstate New York, only twenty minutes south of the Canadian border, Molli contrasted her oil painting adventures in the woods with her time working in luxury fashion at Tory Burch in New York City. In undergrad, she spent the summers accepted and enrolled at the Rhode Island School of Design.</p>
       </section>
 
       <section id="career">
         <h2>Career</h2>
-        <p>Molli started at Tory Burch before COVID-19 led her to Marfa. She later moved to L.A., working with stylists like Nancy Steiner. She joined R&D Placement in 2022 and has supported Prettybird, Strike Anywhere, and Group Thrpy. In 2024, she became a Director's Assistant.</p>
-        <p>She also co-directs the documentary series <em>Life At Night</em> and practices leathercraft to reconnect with fashion. She's pursuing her MFA at Maine Media.</p>
+        <p>Before graduating from college, Molli began her professional journey as a stylist assistant at Tory Burch in New York City. Her initial foray into the world of luxury fashion ended in 2020 with the onset of the COVID-19 pandemic. After earning her degree from St. Lawrence University in 2021, she followed a creative calling to Marfa, Texas, where she immersed herself in the minimalist art of Donald Judd.</p>
+        <p>Molli later relocated to Los Angeles, where she began working with stylists and costume designers, including Nancy Steiner. She entered the film world in 2022 with an assistant position at R&D Placement, where she connected with emerging filmmakers. Building momentum, she supported production companies on various treatments and creative projects, contributing to work with studios such as Prettybird, Strike Anywhere, and Group Thrpy. In 2024, she stepped into the role of Director’s Assistant, working both on and off set across a range of commercial productions.</p>
+        <p>By night, she co-directs and animates <em>Life At Night</em>, a documentary series that tells the stories and captures the spaces of those who work while the city sleeps. Outside of filmmaking, she also explores leathercraft—a tactile practice that reconnects her with her first creative passion: fashion.</p>
+        <p>She hopes to culminate her insight in the fashion and film industries professionally and is excited to continue her creative growth through a Master's in Fine Arts at Maine Media.</p>
       </section>
 
       <section id="filmography">
         <h2>Filmography</h2>
         <h3>Commercial</h3>
         <ul>
-          <li>2024: Outback Steakhouse</li>
-          <li>2024: Busch Light</li>
-          <li>2024: Bombay Sapphire</li>
-          <li>2024: Nathan's Famous</li>
-          <li>2024: Little Debbie</li>
-          <li>2024: Coors Light</li>
-          <li>2024: Nissan (Stylist Assistant)</li>
+          <li>2024: Outback Steakhouse - Director's Assistant</li>
+          <li>2024: Busch Light - Director's Assistant</li>
+          <li>2024: Bombay Sapphire - Director's Assistant</li>
+          <li>2024: Nathan's Famous - Director's Assistant</li>
+          <li>2024: Little Debbie - Director's Assistant</li>
+          <li>2024: Coors Light - Director's Assistant</li>
+          <li>2024: Nissan - Stylist Assistant</li>
         </ul>
         <h3>Film</h3>
         <ul>
-          <li>2025: <em>Life at Night</em> (Director, Animator)</li>
-          <li>2024: <em>The Selectman</em> (Costume Designer)</li>
-          <li>2023: <em>In the Shadow of Palms</em> (Creative Assistant)</li>
-          <li>2023: <em>Ice Packs and Sunglasses</em> (Costume Designer)</li>
+          <li>2025: <em>Life at Night</em> - Director, Animator</li>
+          <li>2024: <em>The Selectman</em> - Costume Designer
+            <p><em>Lake Placid Episodic Festival 2024, Maine International Film Festival 2024, Mammoth Film Festival 2024 (Nominee, Best Episodic), Hollywood Just4Shorts 2024 (Award Winner), Dances With Films 2024</em></p>
+          </li>
+          <li>2023: <em>In the Shadow of Palms</em> - Creative Assistant
+            <p><em>Tribeca Film Festival 2023</em></p>
+          </li>
+          <li>2023: <em>Ice Packs and Sunglasses</em> - Costume Designer</li>
         </ul>
         <h3>TV</h3>
         <ul>
-          <li>2023: <em>The Bachelor</em> (Stylist Assistant)</li>
-          <li>2023: <em>S.W.A.T.</em> (Background Actor, PA)</li>
-        </ul>
-        <h3>Music Videos</h3>
-        <ul>
-          <li>2023: Sony, <em>Set The Stage</em> (Production Assistant)</li>
+          <li>2023: ABC, <em>The Bachelor</em> (Season 28) - Stylist Assistant</li>
+          <li>2023: CBS, <em>S.W.A.T.</em> (Season 6) - Background Actor, Production Assistant</li>
         </ul>
       </section>
 
@@ -473,7 +498,15 @@
 
       <section id="process">
         <h2>Process</h2>
-        <p>Molli works with 16mm film and collage animation techniques.</p>
+        <p>Molli creates films using 16mm film and collage animation techniques.</p>
+      </section>
+
+      <section id="accomplishments">
+        <h2>Accomplishments</h2>
+        <ul>
+          <li>Maine Media - Scholarship</li>
+          <li>St. Lawrence University - Scholarship</li>
+        </ul>
       </section>
 
       <section id="external-links">
@@ -487,7 +520,7 @@
 
       <section id="professional-availability">
         <h2>Professional Availability</h2>
-        <p>Molli is available for assistant directing, styling, and other creative collaborations. Contact her at <a href="mailto:molliamorris@gmail.com">molliamorris@gmail_dot_com</a>.</p>
+        <p>Morris is available to assist with assistant directing, styling, and other creative collaborations. Reach her at <a href="mailto:molliamorris@gmail.com">molliamorris@gmail.com</a>.</p>
       </section>
     </main>
     </div>
