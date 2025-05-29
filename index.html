@@ -39,7 +39,7 @@
       }
       
       .logo img {
-        height: 50px; /* Adjusted height for consistency */
+        height: 60px; /* Adjusted height for a slightly bigger logo */
         margin-right: 0.5em;
       }
       
@@ -52,7 +52,7 @@
 
       .mollipedia-title {
         font-family: 'Linux Libertine', 'Times New Roman', Times, serif; /* Wikipedia logo font */
-        font-size: 1.6em; /* Slightly larger for the main title */
+        font-size: 1.8em; /* Slightly larger for the main title to match bigger logo */
         font-weight: normal;
         color: #000;
       }
@@ -60,7 +60,7 @@
       .mollipedia-tagline {
         /* Wikipedia tagline/body font stack for better system font matching */
         font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif; 
-        font-size: 0.7em; /* Smaller for the tagline */
+        font-size: 0.75em; /* Slightly larger tagline */
         color: #555; /* Slightly muted color for the tagline */
         margin-top: -0.2em; /* Pull tagline up closer to the title */
       }
@@ -142,9 +142,11 @@
         width: 250px;
         background: #ffffff;
         padding: 1em;
-        height: 100vh;
+        /* height: 100vh; Removed to allow content-based height and proper sticky behavior */
         position: sticky;
-        top: 0;
+        /* Calculated based on header height (approx 76px) + main's padding-top (2em = 32px) */
+        top: 108px; 
+        /* Removed margin-top: 2em; as 'top' property handles vertical positioning for sticky elements */
       }
 
       .content-wrapper {
@@ -155,7 +157,7 @@
       }
 
       nav h2 {
-        border-bottom: 0.5px solid #a2a9b1;
+        border-bottom: 1px solid #dcdcdc; /* Lighter grey for a thinner visual effect */
         padding-bottom: 0.1em;
         font-weight: bold;
         font-size: 0.9em;
@@ -235,7 +237,7 @@
       }
       
       /* Only constrain width for headings that might overlap with infobox */
-      #early-life h2::after { /* Removed #career from this rule */
+      #early-life h2::after {
         max-width: calc(100% - 275px);
       }
 
@@ -244,13 +246,12 @@
         border: none;
         padding-bottom: 0;
         margin-top: 1.5em;
-        font-weight: bold; /* --- ADDED THIS LINE --- */
+        font-weight: bold;
       }
 
       section {
         margin-bottom: 2em;
-        padding-left: 1em; /* Add padding for readability */
-        padding-right: 1em; /* Add padding for readability */
+        /* Removed padding-left and padding-right to align with h1 */
       }
 
       p, li {
@@ -266,54 +267,53 @@
       }
 
       /* --- MOBILE-SPECIFIC CSS STARTS HERE --- */
-      @media (max-width: 768px) { /* This breakpoint targets smaller screens like iPhones */
+      @media (max-width: 768px) {
         
         /* General layout adjustments for mobile */
         body {
-            padding-bottom: 20px; /* Add some padding at the bottom */
+            padding-bottom: 20px;
         }
 
         .header {
-          padding: 0.3em 0.5em; /* Smaller padding for header */
-          flex-direction: column; /* Stack header content vertically */
-          align-items: center; /* Center header content */
+          padding: 0.3em 0.5em;
+          flex-direction: column;
+          align-items: center;
         }
         
         .logo {
-            flex-direction: column; /* Stack logo left and search/links vertically */
-            padding: 0; /* Remove horizontal padding on smaller screens */
-            max-width: 100%; /* Ensure logo takes full width */
-            justify-content: center; /* Center elements within logo */
+            flex-direction: column;
+            padding: 0;
+            max-width: 100%;
+            justify-content: center;
         }
 
         .logo-left {
-            margin-bottom: 10px; /* Space between logo and other elements */
-            width: 100%; /* Take full width */
-            justify-content: center; /* Center the logo image and text */
+            margin-bottom: 10px;
+            width: 100%;
+            justify-content: center;
         }
         
         .logo img {
-          height: 40px; /* Smaller logo for mobile */
+          height: 50px; /* Slightly larger on mobile too for consistency */
         }
         
         .mollipedia-title {
-          font-size: 1.3em; /* Smaller title font for mobile */
+          font-size: 1.5em; /* Adjusted for mobile to match new desktop size */
         }
 
         .mollipedia-tagline {
-          font-size: 0.6em; /* Smaller tagline font for mobile */
+          font-size: 0.7em; /* Adjusted for mobile to match new desktop size */
         }
         
         .search-section,
         .header-links {
           display: none; /* Hide search bar and header links on mobile */
-          /* You could implement a hamburger menu with JavaScript to reveal these */
         }
         
         .content-wrapper {
-          flex-direction: column; /* Stack navigation and main content vertically */
-          width: 100%; /* Ensure wrapper takes full width */
-          margin: 0; /* Remove auto margins to allow full width */
+          flex-direction: column;
+          width: 100%;
+          margin: 0;
         }
         
         nav { /* Your "Contents" section */
@@ -321,12 +321,12 @@
         }
 
         main {
-          padding: 1em; /* Adjust padding for main content on mobile */
-          max-width: 100%; /* Ensure main content takes full width */
-          margin: 0; /* Remove auto margins for full width */
+          padding: 1em;
+          max-width: 100%;
+          margin: 0;
           
           /* --- FLEXBOX PROPERTIES FOR REORDERING ON MOBILE --- */
-          display: flex;           /* Make main a flex container */
+          display: flex;         /* Make main a flex container */
           flex-direction: column;  /* Stack its children vertically */
         }
 
@@ -340,19 +340,18 @@
         }
 
         .infobox { /* Your infobox */
-          float: none; 
-          width: 95%; 
-          margin: 1em auto; 
-          box-sizing: border-box; 
-          font-size: 0.85em; 
-          margin-top: 1em; 
+          float: none;  
+          width: 95%;  
+          margin: 1em auto;  
+          box-sizing: border-box;  
+          font-size: 0.85em;  
+          margin-top: 1em;  
           order: 3; /* Appears third, after summary */
         }
         
-        /* --- THIS IS THE CRUCIAL ADDITION --- */
         /* All other sections should appear after the infobox */
         main section:not(#summary) {
-            order: 4; 
+            order: 4;  
         }
 
         /* All h2 borders should be full width on mobile as infobox is no longer floating */
@@ -383,16 +382,16 @@
         <div class="search-section">
           <div class="search-bar">
             <input type="text" class="search-input" placeholder="Search Mollipedia">
-            <button class="search-button">
+            <button class="search-button" onclick="window.location.href='https://blog.mollimorris.com';">
               Search
             </button>
           </div>
         </div>
         
         <div class="header-links">
-          <a href="#">Donate</a>
-          <a href="#">Create account</a>
-          <a href="#">Log in</a>
+          <a href="https://blog.mollimorris.com" target="_blank">Blog</a>
+          <a href="https://blog.mollimorris.com" target="_blank">Donate</a>
+          <a href="https://blog.mollimorris.com" target="_blank">Log in</a>
           <span class="menu-dots">⋯</span>
         </div>
       </div>
@@ -435,7 +434,7 @@
           She resides in Los Angeles, California, where she indulges in the simple pleasures of leathercrafting, the occasional flirtation with wood carving, figure drawing, writing poetry, cooking for her people, and being a beach slug.
         </p>
         <p>
-          As of 2025, Morris remains open to collaborative opportunities across the creative industries. [3]
+          As of 2025, Morris remains open to collaborative opportunities across the creative industries.
         </p>
       </section>
       
@@ -512,6 +511,7 @@
       <section id="external-links">
         <h2>External Links</h2>
         <ul>
+          <li><a href="https://blog.mollimorris.com" target="_blank">Blog</a></li>
           <li><a href="https://www.instagram.com/mollimorris/" target="_blank">Instagram</a></li>
           <li><a href="https://vimeo.com/mollimorris" target="_blank">Vimeo</a></li>
           <li><a href="https://www.linkedin.com/in/molli-morris/" target="_blank">LinkedIn</a></li>
